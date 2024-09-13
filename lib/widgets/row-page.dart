@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class RowPage extends StatelessWidget {
-  const RowPage({super.key});
+   final String name;
+  static String id = '/row';
+  const RowPage({super.key, required this.name});
+
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_week17/card_demo.dart';
-import 'package:flutter_week17/colum_page.dart';
-import 'package:flutter_week17/list_view_menu.dart';
-import 'package:flutter_week17/my_card.dart';
-import 'package:flutter_week17/row-page.dart';
+import 'package:flutter_week17/pages/contact.dart';
+import 'package:flutter_week17/widgets/card_demo.dart';
+import 'package:flutter_week17/widgets/colum_page.dart';
+import 'package:flutter_week17/widgets/list_view_menu.dart';
+import 'package:flutter_week17/widgets/my_card.dart';
+import 'package:flutter_week17/widgets/row-page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final String name; //หน้าแรก2x
+  static String id = "/home";
+  const HomePage({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -22,41 +25,42 @@ class HomePage extends StatelessWidget {
               accountName: Text("Mr.Jhon Doe"),
               accountEmail: Text("Jhon@gmail.com"),
               currentAccountPicture: CircleAvatar(
-                child: Icon(Icons.android),
+                //child: Icon(Icons.android),
+                backgroundImage: NetworkImage("https://static.wikia.nocookie.net/houkai-star-rail/images/9/92/Character_Robin_Splash_Art.png/revision/latest/scale-to-width-down/1000?cb=20240508021256"),
               ),
             ),
             ListTile(
               leading: const Icon(Icons.home),
-              title: const Text('Home'),
+              title: Text(name),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const HomePage(),
+                    builder: (context) => const ContactPage(name: 'หน้าแรกxx'),
                   ),
                 );
               },
             ),
             ListTile(
               leading: const Icon(Icons.apps),
-              title: const Text('Row and Column'),
+              title: const Text('Column Widget'),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const RowPage(),
+                    builder: (context) => const ColumnPage(name: 'หน้าคอลลัมน์',),
                   ),
                 );
               },
             ),
             ListTile(
               leading: const Icon(Icons.abc),
-              title: const Text('Column widget'),
+              title: const Text('Row widget'),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ColumnPage(),
+                    builder: (context) => const RowPage(name: 'หน้าแถว',),
                   ),
                 );
               },
@@ -89,12 +93,24 @@ class HomePage extends StatelessWidget {
               leading: const Icon(Icons.credit_card),
               title: const Text('My Card'),
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const MyCard(),
                   ),
                 );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.contact_page),
+              title: const Text('Contact Me'),
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            const ContactPage(name: 'Contact')));
+                debugPrint("Contact Me");
               },
             ),
           ],
